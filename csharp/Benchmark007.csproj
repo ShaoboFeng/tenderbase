@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EF0BC95F-6FF9-43A1-9433-9D192C582FE6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OO7</RootNamespace>
+    <AssemblyName>OO7</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tests\app.config" />
+    <Compile Include="benchmarks\OO7\Benchmark.cs" />
+    <Compile Include="benchmarks\OO7\BenchmarkImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_Assembly.cs" />
+    <Compile Include="benchmarks\OO7\OO7_AssemblyImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_AtomicPart.cs" />
+    <Compile Include="benchmarks\OO7\OO7_AtomicPartImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_BaseAssembly.cs" />
+    <Compile Include="benchmarks\OO7\OO7_BaseAssemblyImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_ComplexAssembly.cs" />
+    <Compile Include="benchmarks\OO7\OO7_ComplexAssemblyImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_CompositePart.cs" />
+    <Compile Include="benchmarks\OO7\OO7_CompositePartImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_Connection.cs" />
+    <Compile Include="benchmarks\OO7\OO7_ConnectionImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_DesignObject.cs" />
+    <Compile Include="benchmarks\OO7\OO7_DesignObjectImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_Document.cs" />
+    <Compile Include="benchmarks\OO7\OO7_DocumentImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_Manual.cs" />
+    <Compile Include="benchmarks\OO7\OO7_ManualImpl.cs" />
+    <Compile Include="benchmarks\OO7\OO7_Module.cs" />
+    <Compile Include="benchmarks\OO7\OO7_ModuleImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="TenderBase.csproj">
+      <Project>{3D0EF861-2789-4a44-945F-BEF9BB03E4D3}</Project>
+      <Name>TenderBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

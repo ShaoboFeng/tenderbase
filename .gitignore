@@ -1,0 +1,9 @@
+java/lib
+csharp/src/obj
+csharp/lib
+*.class
+*.dbs
+*.dll
+*.pdb
+*.suo
+TestResult.xml

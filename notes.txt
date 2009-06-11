@@ -1,0 +1,306 @@
+Java to C# porting notes.
+
+. names reserved in C#: lock, out, sizeof, ref
+. In C#, interfaces cannot have fields
+
+. final (member) => readonly or const
+. final (class) => sealed
+. transient => [NonSerialized]
+. synchronized => lock
+. instanceof => is
+. super() => base()
+. super => base
+
+. boolean => bool, Boolean
+. byte => sbyte
+
+. equals(Object) => Equals(Object)
+. finalize() => destructor (or is it Dispose() ?)
+. $foo.class => typeof($foo) or Object.GetType()
+
+. Iterator => IEnumerator
+    public interface Iterator {
+        boolean hasNext();
+        object next();
+        void remove();
+    }
+
+    public interface IEnumerator {
+        object Current { get; }
+        bool MoveNext();
+        void Reset();
+    }
+
+    [Serializable]
+    public struct DictionaryEntry {
+        public DictionaryEntry(object key, object value);
+        public object Key { get; set; }
+        public object Value { get; set; }
+    }
+
+. Comparable => System.IComparable
+
+. java.io.Externalizable => System.Runtime.Serialization.ISerializable, but not 
+  exact
+. java.io.Externalizable.writeExternal => 
+  System.Runtime.Serialization.ISerializable.GetObjectData
+. java.io.Externalizable.readExternal =>
+  System.Runtime.Serialization.ISerializable(SerializationInfo s, StreamingContext context)
+    System.Runtime.Serialization.SerializationInfo
+    System.Runtime.Serialization.StreamingContext
+
+. java.lang.reflect.Constructor => System.Reflection.ConstructorInfo
+
+. Object.hashCode() => Object.GetHashCode()
+
+. Class => Type
+. Class.getSuperclass() => Type.BaseType
+. Class.getDeclaredFields() => Type.GetFields(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.
+NonPublic | System.Reflection.BindingFlags.Public | System.Reflection.
+BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Static)
+. Class.getName() => Type.FullName
+. Class.isAssignableFrom() => Type.IsAssignableFrom()
+. Class.isArray() => Type.IsArray()
+. Class.getComponentType() => Type.GetElementType()
+. Class.newInstance() => System.Activator.CreateInstance(Type)
+. Class.getDeclaredConstructor() => Type.GetConstructor(System.Reflection.BindingFlags.DeclaredOnly, null, 
+  perstConstructorProfile, null);
+
+. NoSuchMethodException => System.MethodAccessException
+. NoSuchFieldException => System.FieldAccessException
+
+. java.lang.reflect.Field => System.Reflection.FieldInfo
+. Field.getModifiers() & Modifier.TRANSIENT => FieldInfo.IsNotSerialized
+. Field.getModifiers() & Modifier.STATIC => FieldInfo.IsStatic
+. Field.getName() => FieldInfo.Name
+. Field.getType() => FieldInfo.FieldType
+
+. ArrayList.add() => ArrayList.Add()
+
+. java.util.Date => System.DateTime
+  Date.getTime() => DateTime.Ticks
+. java.io.OutputStream => System.IO.Stream
+. RuntimeException => System.SystemException
+. java.io.ObjectInput => System.IO.BinaryReader, but not exact
+
+. System.DateTime doesn't have null in C# (is a struct)
+. BinCoverter, Convert to convert between datatypes
+
+BitConverter.Int64BitsToDouble(long val);
+BitConverter.ToSingle(BitConverter.GetBytes(int val), 0);
+
+TODO:
+ * should I add byte and other signed types to Key() ?
+ * should I rename ClassDescriptor => TypeDescriptor
+
+Path of jdk:
+C:\Program Files\Java\jdk1.6.0_13
+
+Notes about porting to C#
+
+Trivial to port
+
+** BitIndex.java
+
+Each object has 32 bit mask. Bit meaning is app dependent. Usually a bit corresponds to
+a bool property.
+
+interface BitIndex<T extends IPersistent> extends IPersistent, IResource, Collection<T>
+  int get(T obj);
+  void put(T obj, int mask);
+  remove(T obj);
+  int size();
+  void clear();
+  IterableIterator<T> iterator(int set, int clear);
+
+** Blob.java
+
+interface Blob extends IPersistent, IResource
+  InputStream getInputStream();
+  OutputStream getOutputStream();
+  OutputStream getOutputStream(boolean multisession);
+
+** FieldIndex.java
+
+interface FieldIndex<T extends IPersistent> extends GenericIndex<T> 
+  boolean put(T obj);
+  T set(T obj);
+  void append(T obj);
+  void remove(T obj);
+  T remove(Key key);
+  T removeKey(Object key);
+  boolean contains(T obj);
+  Class getIndexedClass();
+  Field[] getKeyFields();
+
+** GenericIndex.java
+
+interface GenericIndex<T extends IPersistent> extends IPersistent, IResource, Collection<T>
+  T get(Key key);
+  ArrayList<T> getList(Key from, Key till);
+  IPersistent[] get(Key from, Key till);
+  T get(Object key);
+  IPersistent[] get(Object from, Object till);
+  ArrayList<T> getList(Object from, Object till);
+  IPersistent[] getPrefix(String prefix);
+  ArrayList<T> getPrefixList(String prefix);
+  IPersistent[] prefixSearch(String word);
+  ArrayList<T> prefixSearchList(String word);
+  IPersistent[] toPersistentArray();
+  Iterator<T> iterator();
+  IterableIterator<Map.Entry<Object,T>> entryIterator();
+  IterableIterator<T> iterator(Key from, Key till, int order);
+  IterableIterator<T> iterator(Object from, Object till, int order);
+  IterableIterator<Map.Entry<Object,T>> entryIterator(Key from, Key till, int order);
+  IterableIterator<Map.Entry<Object,T>> entryIterator(Object from, Object till, int order);
+  IterableIterator<T> prefixIterator(String prefix);
+  Class getKeyType();
+  int size();
+  void clear();
+
+** IFile.java
+
+interface IFile
+  void write(long pos, byte[] buf);
+  int read(long pos, byte[] buf);
+  void sync();
+  boolean lock();
+  void close();
+  long length();
+
+** Index.java
+
+interface Index<T extends IPersistent> extends GenericIndex<T>
+  boolean put(Key key, T obj);
+  T set(Key key, T obj);
+  void remove(Key key, T obj);
+  T remove(Key key);
+  boolean put(Object key, T obj);
+  T set(Object key, T obj);
+  void remove(Object key, T obj);
+  T remove(String key);
+  T removeKey(Object key);
+
+** IPersistent.java
+
+interface IPersistent extends java.io.Externalizable
+  void load();
+  boolean isRaw();
+  boolean isModified();
+  boolean isDeleted();
+  boolean isPersistent();
+  void makePersistent(Storage storage);
+  void store();
+  void modify();
+  void loadAndModify();
+  int getOid();
+  void deallocate();
+  boolean recursiveLoading();
+  Storage getStorage();
+  void onLoad();
+  void onStore();
+  void invalidate();
+  void assignOid(Storage storage, int oid, boolean raw);
+
+** IPersistentSet.java
+
+interface IPersistentSet<T extends IPersistent> extends IPersistent, IResource, Set<T>
+
+** IResource.java
+
+interface IResource
+  void sharedLock();
+  boolean sharedLock(long timeout);
+  void exclusiveLock();
+  boolean exclusiveLock(long timeout);
+  void unlock();
+  void reset();
+
+** IterableIterator.java
+
+abstract class IterableIterator<T> implements Iterable<T>, Iterator<T>
+
+** IValue.java
+
+interface IValue
+
+** Key.java
+
+class Key
+
+should be simple to port
+
+** L2List.java
+
+class L2List extends L2ListElem implements Collection
+
+double-linked list
+
+** L2ListElem.java
+
+class L2ListElem extends PersistentResource
+
+double-linked list element
+
+** Link.java
+
+Link<T extends IPersistent> extends Collection<T>
+one-to-many interface
+
+** MappedFile.java
+
+class MappedFile implements IFile. Can be implemented last.
+
+** MemoryUsage.java
+
+class MemoryUsage
+
+** NullFile.java
+class NullFile implements IFile 
+
+** PatriciaTrie.java
+
+interface PatriciaTrie<T extends IPersistent> extends IPersistent, IResource, Collection<T>
+
+** PatriciaTrieKey.java
+class PatriciaTrieKey
+
+** Persistent.java
+class Persistent implements IPersistent
+
+** PersistentCollection.java
+abstract class PersistentCollection<T> extends PersistentResource implements Collection<T>
+
+** PersistentComparator.java
+abstract class PersistentComparator<T extends IPersistent> extends Persistent
+
+** PersistentResource.java
+class PersistentResource extends Persistent implements IResource
+
+** PersistentString.java
+class PersistentString extends PersistentResource
+
+** Projection.java
+class Projection<From extends IPersistent, To extends IPersistent> extends HashSet<To>
+
+** Rectangle.java
+class Rectangle implements IValue, Cloneable
+
+* RectangleR2.java
+class RectangleR2 implements IValue, Cloneable
+
+** Relation.java
+abstract class Relation<M extends IPersistent, O extends IPersistent> extends Persistent implements Link<M> {
+
+** RelationMasterStorage.java
+** ReplicationSlaveStorage.java
+** SortedCollection.java
+** SpactialIndex.java
+** SpatialIndexR2.java
+** Storage.java
+** StorageError.java
+** StorageFactory.java
+** StorageListener.java
+** TimeSeries.java
+** XMLImporterException.java
+

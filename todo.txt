@@ -1,0 +1,102 @@
+See bug tracker (http://github.com/kjk/nuperst/issues) for more details.
+
+Next++:
+ * fix TestBlob.cs
+ * write a test app that scans directories and stores the information
+   in the database, to see how big the database is and how fast the access
+   is to information about files/directories
+ * write a basic web page (host on github with their pages thingy?)
+ * auto-generate docs and put them on web page
+ * better test framework (steal ideas from sqlite?)
+ * write docs on how to work on nuperst codebase
+ * write docs on how to use nuperst in your own code
+ * write even more tests
+ * find a better name than nuperst
+ * test with other jvms (e.g. http://jamvm.sourceforge.net/)
+ * add new features
+ * make releases and push them to my s3, link from a webpage
+
+Maybe:
+ * write ant makefile (to make it easy to run from eclipse)
+ * machine translation to .NET using that db4o tool in eclipse
+
+Done:
+
+[2009-05-20]
+ * started on NUnit tests
+ * wrote TestSimple.cs
+ * fixes to constructor loading and ClassDescriptor.buildFieldList
+ * wrote OMIT_* #defines to conditionally omit code
+
+[2009-05-19] 
+ * rename System.Type => Type
+ * rename System.Boolean => bool
+ * removed useless comments, unused code, code cleanups
+ * ported ThickIndex.cs, ScalableSet.cs, AltPersistentSet.cs,
+   IPersistentSet.cs, PersistentSet.cs, StorageFactory.cs, RTreeR2Page.cs,
+   RTreeR2.cs, RTree.cs, RTreePage.cs, AltBtreeMultiFieldIndex.cs,
+   AltBtreeFieldIndex.cs, AltBtree.cs, PTrie.cs, Ttree.cs, TtreePage.cs,
+   RelationImpl.cs, BtreeMultiFieldIndex.cs, BtreeFieldIndex.cs,
+   BitIndexImpl.cs, StorageImpl.cs
+
+[2009-05-18]
+ * StorageImpl.cs porting, ClassDescriptor.cs
+
+[2009-05-17]
+ * Rc4File.cs, DefaultPersistentComparator.cs, GenericSort.cs,
+   GenericSortArray.cs, Btree.cs, BtreeKye.cs, BtreePage.cs, PagePool.c,
+   Page.cs, ObjectHeader.cs, LinkImpl.cs, StrongHashTable.cs, WeakHashTable.cs,
+   LruObjectCache.cs, OidHashTable.cs, TimeSeries.cs, TimeSeriesBlock.cs,
+   TimeSeriesTick.cs, SpatialIndex.cs, SpatialIndexR2.cs, SortedCollection.cs,
+   Relation.cs, Projection.cs, PersistentComparator.cs, PatriciaTrieKey.cs,
+   PatriciaTrie.cs, MemoryUsage.cs, Rectangle.cs, RectangleR2.cs, Link.cs,
+   StorageListener.cs, L2List.cs, L2ListElem.cs, LoadFactory.cs,
+   PersistentString.cs, RefletionProvider.cs, StandardReflectionProvider.cs,
+   BlobImpl.cs, Index.cs, FieldIndex.cs, GenericIndex.cs, NullFile.cs, Blob.cs,
+   PersistentResource.cs, BitIndex.cs, Key.cs, Persistent.cs, IValue.cs,
+   IResource.cs, IPersistent.cs, FastSerializable.cs, LRU.cs, ByteBuffer.cs,
+   Bytes.cs, OSFile.cs
+ * [2009-05-16] iterator() => GetEnumerator()
+ * [2009-05-15] remove usage of ClassLoader
+ * [2009-05-04] start fixing auto-converted code
+ * [2009-05-03] started manual port to C#
+ * [2009-05-26] started on C# version
+ * [2009-04-25] fix:
+kjkmacpro:test15 kkowalczyk$ java -classpath ../../lib/perst15.jar:. TestCompoundIndex altbtree
+Exception in thread "main" TenderBase.StorageError: Object access violation: TenderBase.StorageError: Unsupported type class java.lang.Object
+	at TenderBaseImpl.StorageImpl.packObject(StorageImpl.java:3187)
+	at TenderBaseImpl.StorageImpl.storeObject0(StorageImpl.java:2469)
+	at TenderBaseImpl.StorageImpl.storeObject(StorageImpl.java:2417)
+	at TenderBase.Persistent.store(Persistent.java:45)
+	at TenderBaseImpl.LruObjectCache.flush(LruObjectCache.java:134)
+	at TenderBaseImpl.StorageImpl.commit(StorageImpl.java:1091)
+	at TestCompoundIndex.main(TestCompoundIndex.java:38)
+Caused by: TenderBase.StorageError: Unsupported type class java.lang.Object
+	at TenderBaseImpl.ClassDescriptor.getTypeCode(ClassDescriptor.java:246)
+	at TenderBaseImpl.ClassDescriptor.buildFieldList(ClassDescriptor.java:181)
+	at TenderBaseImpl.ClassDescriptor.<init>(ClassDescriptor.java:282)
+	at TenderBaseImpl.StorageImpl.getClassDescriptor(StorageImpl.java:1059)
+	at TenderBaseImpl.StorageImpl.packObject(StorageImpl.java:3180)
+	at TenderBaseImpl.StorageImpl.storeObject0(StorageImpl.java:2469)
+	at TenderBaseImpl.StorageImpl.swizzle(StorageImpl.java:2524)
+	at TenderBaseImpl.StorageImpl.packObject(StorageImpl.java:3342)
+	at TenderBaseImpl.StorageImpl.packObject(StorageImpl.java:3185)
+	... 6 more
+ * [2009-04-25] fix
+Exception in thread "main" java.lang.ClassCastException: [Ljava.lang.Object;
+	at TenderBaseImpl.AltBtree$BtreePageOfRaw.getKey(AltBtree.java:731)
+	at TenderBaseImpl.AltBtree$BtreePage.insert(AltBtree.java:174)
+	at TenderBaseImpl.AltBtree.insert(AltBtree.java:952)
+	at TenderBaseImpl.AltBtree.put(AltBtree.java:895)
+	at TenderBaseImpl.AltBtreeMultiFieldIndex.put(AltBtreeMultiFieldIndex.java:107)
+	at TestCompoundIndex.main(TestCompoundIndex.java:36)
+   when running ./test15.sh
+
+ * [2009-04-22] machine translation to .NET using microsoft's java migration tool
+ * [2009-04-21] port build and tests scripts to unix (at least running on mac)
+ * [2009-04-21] write one-step compilation and test suite
+ * [2009-04-21] only one copy of setjdkpath.bat
+ * [2009-04-20] build all java 1.5 source code and examples
+ * [2009-04-20] run tests
+ * [2009-04-20] read the code, spelling and copy improvements in comments
+ * [2009-04-20] gather a list of changes since 2.49 made to perst

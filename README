@@ -1,0 +1,14 @@
+TenderBase is a fork of perst, an object-oriented database for Java and .NET (C#).
+
+Perst used to have a liberal BSD license up to version 2.49.
+
+In version 2.50 Perst changed the licensing to dual-license scheme:
+ * free GPLv2 code
+ * commerical license available for fee
+
+This is a fork or Perst 2.49, so it retains the liberal BSD license.
+
+The goal of this project is to:
+ * port the code to C#
+ * maintain and improve it
+ 

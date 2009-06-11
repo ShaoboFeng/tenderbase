@@ -1,0 +1,231 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>TenderBase</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TenderBase</RootNamespace>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <ProjectGuid>{2CA52394-A3EC-4422-9BCB-300797B01703}</ProjectGuid>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <Name>mscorlib</Name>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\AssemblyInfo.cs" />
+    <Compile Include="src\Assert.cs" />
+    <Compile Include="src\AssertionFailed.cs" />
+    <Compile Include="src\BitIndex.cs" />
+    <Compile Include="src\Blob.cs" />
+    <Compile Include="src\FieldIndex.cs" />
+    <Compile Include="src\GenericIndex.cs" />
+    <Compile Include="src\IFile.cs" />
+    <Compile Include="src\impl\AltBtree.cs" />
+    <Compile Include="src\impl\AltBtreeFieldIndex.cs" />
+    <Compile Include="src\impl\AltBtreeMultiFieldIndex.cs" />
+    <Compile Include="src\impl\AltPersistentSet.cs" />
+    <Compile Include="src\impl\AsyncReplicationMasterFile.cs" />
+    <Compile Include="src\impl\BitIndexImpl.cs" />
+    <Compile Include="src\impl\BlobImpl.cs" />
+    <Compile Include="src\impl\Btree.cs" />
+    <Compile Include="src\impl\BtreeFieldIndex.cs" />
+    <Compile Include="src\impl\BtreeKey.cs" />
+    <Compile Include="src\impl\BtreeMultiFieldIndex.cs" />
+    <Compile Include="src\impl\BtreePage.cs" />
+    <Compile Include="src\impl\ByteBuffer.cs" />
+    <Compile Include="src\impl\Bytes.cs" />
+    <Compile Include="src\impl\ClassDescriptor.cs" />
+    <Compile Include="src\impl\DefaultPersistentComparator.cs" />
+    <Compile Include="src\impl\FastSerializable.cs" />
+    <Compile Include="src\impl\GenericSort.cs" />
+    <Compile Include="src\impl\GenericSortArray.cs" />
+    <Compile Include="src\impl\LinkImpl.cs" />
+    <Compile Include="src\impl\LRU.cs" />
+    <Compile Include="src\impl\LruObjectCache.cs" />
+    <Compile Include="src\impl\MultiFile.cs" />
+    <Compile Include="src\impl\ObjectHeader.cs" />
+    <Compile Include="src\impl\OidHashTable.cs" />
+    <Compile Include="src\impl\OSFile.cs" />
+    <Compile Include="src\impl\Page.cs" />
+    <Compile Include="src\impl\PagePool.cs" />
+    <Compile Include="src\impl\PersistentSet.cs" />
+    <Compile Include="src\impl\PersistentStub.cs" />
+    <Compile Include="src\impl\PTrie.cs" />
+    <Compile Include="src\impl\Rc4File.cs" />
+    <Compile Include="src\impl\ReflectionProvider.cs" />
+    <Compile Include="src\impl\RelationImpl.cs" />
+    <Compile Include="src\impl\ReplicationMasterFile.cs" />
+    <Compile Include="src\impl\ReplicationMasterStorageImpl.cs" />
+    <Compile Include="src\impl\ReplicationSlaveStorageImpl.cs" />
+    <Compile Include="src\impl\Rtree.cs" />
+    <Compile Include="src\impl\RtreePage.cs" />
+    <Compile Include="src\impl\RtreeR2.cs" />
+    <Compile Include="src\impl\RtreeR2Page.cs" />
+    <Compile Include="src\impl\ScalableSet.cs" />
+    <Compile Include="src\impl\StandardReflectionProvider.cs" />
+    <Compile Include="src\impl\StorageImpl.cs" />
+    <Compile Include="src\impl\StrongHashTable.cs" />
+    <Compile Include="src\impl\ThickIndex.cs" />
+    <Compile Include="src\impl\TimeSeriesImpl.cs" />
+    <Compile Include="src\impl\Ttree.cs" />
+    <Compile Include="src\impl\TtreePage.cs" />
+    <Compile Include="src\impl\WeakHashTable.cs" />
+    <Compile Include="src\impl\XMLExporter.cs" />
+    <Compile Include="src\impl\XMLImporter.cs" />
+    <Compile Include="src\Index.cs" />
+    <Compile Include="src\IPersistent.cs" />
+    <Compile Include="src\IPersistentSet.cs" />
+    <Compile Include="src\IResource.cs" />
+    <Compile Include="src\IValue.cs" />
+    <Compile Include="src\Key.cs" />
+    <Compile Include="src\L2List.cs" />
+    <Compile Include="src\L2ListElem.cs" />
+    <Compile Include="src\Link.cs" />
+    <Compile Include="src\MemoryUsage.cs" />
+    <Compile Include="src\NullFile.cs" />
+    <Compile Include="src\PatriciaTrie.cs" />
+    <Compile Include="src\PatriciaTrieKey.cs" />
+    <Compile Include="src\Persistent.cs" />
+    <Compile Include="src\PersistentComparator.cs" />
+    <Compile Include="src\PersistentResource.cs" />
+    <Compile Include="src\PersistentString.cs" />
+    <Compile Include="src\Projection.cs" />
+    <Compile Include="src\Rectangle.cs" />
+    <Compile Include="src\RectangleR2.cs" />
+    <Compile Include="src\Relation.cs" />
+    <Compile Include="src\ReplicationMasterStorage.cs" />
+    <Compile Include="src\ReplicationSlaveStorage.cs" />
+    <Compile Include="src\SortedCollection.cs" />
+    <Compile Include="src\SpatialIndex.cs" />
+    <Compile Include="src\SpatialIndexR2.cs" />
+    <Compile Include="src\Storage.cs" />
+    <Compile Include="src\StorageError.cs" />
+    <Compile Include="src\StorageFactory.cs" />
+    <Compile Include="src\StorageListener.cs" />
+    <Compile Include="src\SupportClass.cs" />
+    <Compile Include="src\TimeSeries.cs" />
+    <Compile Include="src\TimeSeriesBlock.cs" />
+    <Compile Include="src\TimeSeriesTick.cs" />
+    <Compile Include="src\XMLImportException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
